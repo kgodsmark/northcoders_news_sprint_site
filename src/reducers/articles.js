@@ -1,13 +1,13 @@
 import * as types from '../actions/types';
 
 export const initialState = {
-    loading: false,
-    error: null,
-    data: []
+  loading: false,
+  error: null,
+  data: []
 }
 
-export default(prevState = initialState, action) => {
-    switch (action.type) {
+export default (prevState = initialState, action) => {
+  switch (action.type) {
     case types.FETCH_ARTICLES_REQUEST:
       return Object.assign({}, prevState, {
         loading: !prevState.loading,
@@ -28,5 +28,5 @@ export default(prevState = initialState, action) => {
       });
     default:
       return prevState;
-    }
-  };
+  }
+};
