@@ -25,12 +25,9 @@ describe('fetchArticles actions', () => {
   });
 
   it('dispatches FETCH_ARTICLES_SUCCESS, responding with 200 and data', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: [1, 2, 3],
-      });
+    moxios.stubRequest(`${API_URL}/articles`, {
+      status: 200,
+      response: [1, 2, 3],
     });
 
     const expectedActions = [
@@ -38,7 +35,7 @@ describe('fetchArticles actions', () => {
       fetchArticlesSuccess([1, 2, 3])
     ];
 
-    const store = mockStore()
+    const store = mockStore();
 
     return store.dispatch(fetchArticles()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -46,17 +43,16 @@ describe('fetchArticles actions', () => {
   });
 
   it('dispatches FETCH_ARTICLES_FAILURE, responding with an error', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 400,
-        response: 'error'
-      });
+    const error = new Error('Error: Request failed with status code 400');
+
+    moxios.stubRequest(`${API_URL}/articles`, {
+      status: 400,
+      response: { error }
     });
 
     const expectedActions = [
       fetchArticlesRequest(),
-      fetchArticlesFailure('error')
+      fetchArticlesFailure({ 'error': error })
     ];
 
     const store = mockStore();
@@ -65,6 +61,5 @@ describe('fetchArticles actions', () => {
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
-
   });
 });
