@@ -1,0 +1,48 @@
+import { expect } from 'chai';
+import commentsReducer, { initialState } from '../../src/reducers/commentsReducer';
+import {
+  fetchCommentsRequest,
+  fetchCommentsSuccess,
+  fetchCommentsFailure
+} from '../../src/actions/fetchComments';
+
+
+describe('comments reducer', () => {
+  describe('default behaviour', () => {
+    it('returns the passed previous state if an unrecognised action is passed', () => {
+      const action = { type: 'whatever' };
+      const newState = commentsReducer(initialState, action);
+      expect(newState).to.equal(initialState);
+    });
+    it('uses the initial state if no previous state is passed', () => {
+      const action = { type: 'whatever' };
+      const newState = commentsReducer(undefined, action);
+      expect(newState).to.equal(initialState);
+    });
+  });
+  it('handles FETCH_comments_REQUEST', () => {
+    const action = fetchCommentsRequest();
+    const newState = commentsReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql([]);
+  });
+  it('handles FETCH_comments_SUCCESS', () => {
+    const prevState = commentsReducer(undefined, fetchCommentsRequest());
+    const data = [1, 2, 3];
+    const action = fetchCommentsSuccess(data);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql(data);
+  });
+  it('handles FETCH_comments_FAILURE', () => {
+    const prevState = commentsReducer(undefined, fetchCommentsRequest());
+    const error = 'Something went wrong';
+    const action = fetchCommentsFailure(error);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+});
