@@ -24,7 +24,7 @@ describe('fetchArticles actions', () => {
     moxios.uninstall();
   });
 
-  it('dispatches FETCH_ARTICLES_SUCCESS when fetching the articles data. Responds with 200 and data', () => {
+  it('dispatches FETCH_ARTICLES_SUCCESS, responding with 200 and data', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -45,7 +45,7 @@ describe('fetchArticles actions', () => {
     });
   });
 
-  it('dispatches FETCH_ARTICLES_FAILURE when fetching articles. Responds with an error', () => {
+  it('dispatches FETCH_ARTICLES_FAILURE, responding with an error', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({

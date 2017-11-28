@@ -24,7 +24,7 @@ describe('fetchArticle actions', () => {
     moxios.uninstall();
   });
 
-  it('dispatches FETCH_ARTICLE_SUCCESS when fetching the article data. Responds with 200 and data', () => {
+  it('dispatches FETCH_ARTICLE_SUCCESS, responding with 200 and data', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -45,5 +45,27 @@ describe('fetchArticle actions', () => {
     });
   });
 
+  it('dispatches FETCH_ARTICLE_FAILURE, responding with an error', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: 'error'
+      });
+    });
+
+    const expectedActions = [
+      fetchArticleRequest(),
+      fetchArticleFailure('error')
+    ];
+
+    const store = mockStore();
+
+    return store.dispatch(fetchArticle())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+
+  });
 
 });
