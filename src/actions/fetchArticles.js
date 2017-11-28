@@ -1,7 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
 
-const API_URL = 'https://godsmark-news.herokuapp.com/api/';
+import API_URL from '../api_url';
 
 
 export const fetchArticlesRequest = () => ({
@@ -18,18 +18,12 @@ export const fetchArticlesFailure = (error) => ({
   payload: error
 });
 
-export default (route) => {
-  let searchString;
-  if (!route) {
-    searchString = `${API_URL}/articles`
-  } else {
-    searchString = `${API_URL}/topics/${route}/articles`;
-  }
+export default () => {
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
-    return axios.get(`${searchString}`)
+    return axios.get(`${API_URL}/articles`)
       .then(res => {
-        dispatch(fetchArticlesSuccess(res.data.articles));
+        dispatch(fetchArticlesSuccess(res.data));
       })
       .catch(err => {
         dispatch(fetchArticlesFailure(err.message));
