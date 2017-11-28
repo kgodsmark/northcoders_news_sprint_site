@@ -26,7 +26,7 @@ export default () => {
         dispatch(fetchArticlesSuccess(res.data));
       })
       .catch(err => {
-        dispatch(fetchArticlesFailure(err.message));
+        dispatch(fetchArticlesFailure(err.response.data));
       });
   }
 };

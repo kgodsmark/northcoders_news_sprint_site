@@ -9,6 +9,7 @@ import fetchArticles, {
 } from '../../src/actions/fetchArticles';
 
 import API_URL from '../../src/api_url';
+import { request } from 'https';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -28,19 +29,42 @@ describe('getArticles actions', () => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: [1,2,3],
+        response: [1, 2, 3],
       });
     });
-    
-      const expectedActions = [
-        fetchArticlesRequest(),
-        fetchArticlesSuccess([1, 2, 3])
-      ];
+
+    const expectedActions = [
+      fetchArticlesRequest(),
+      fetchArticlesSuccess([1, 2, 3])
+    ];
 
     const store = mockStore()
 
     return store.dispatch(fetchArticles()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
+  });
+
+  it('dispatches FETCH_ARTICLES_FAILURE when fetching articles. Responds with an error', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: 'error'
+      });
+    });
+
+    const expectedActions = [
+      fetchArticlesRequest(),
+      fetchArticlesFailure('error')
+    ];
+
+    const store = mockStore();
+
+    return store.dispatch(fetchArticles())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+
   });
 });
