@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import articles from './articles';
-import article from './article';
-import comments from './comments';
+import articlesReducer from './articlesReducer';
+import articleReducer from './articleReducer';
+import commentsReducer from './commentsReducer';
 
 const reducer = combineReducers({
-    articles, article, comments
+    articlesReducer, articleReducer, commentsReducer
 });
 
 export default reducer;
