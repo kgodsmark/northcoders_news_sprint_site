@@ -14,7 +14,7 @@ import { request } from 'https';
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe('getArticles actions', () => {
+describe('fetchArticles actions', () => {
 
   beforeEach(function () {
     moxios.install();
