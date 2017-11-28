@@ -40,4 +40,24 @@ describe('fetchComments actions', () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+  it('dispatches FETCH_COMMENTS_FAILURE, responding with an error', () => {
+    const error = new Error('Error: Request failed with status code 400')
+    
+    moxios.stubRequest(`${API_URL}/articles/none/comments`, {
+       status: 400,
+       response: { error }
+    })
+
+    const expectedActions = [
+      fetchCommentsRequest(),
+      fetchCommentsFailure({ 'error': error})
+    ];
+
+    const store = mockStore();
+
+    return store.dispatch(fetchComments('none'))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
 });
