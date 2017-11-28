@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import expect from 'expect';
 import fetchArticle, {
-  fetchArticleRequest,
-  fetchArticleSuccess,
-  fetchArticleFailure
+    fetchArticleRequest,
+    fetchArticleSuccess,
+    fetchArticleFailure
 } from '../../src/actions/fetchArticle';
 
 import API_URL from '../../src/api_url';
@@ -16,56 +16,52 @@ const mockStore = configureMockStore(middleware);
 
 describe('fetchArticle actions', () => {
 
-  beforeEach(function () {
-    moxios.install();
-  });
-
-  afterEach(function () {
-    moxios.uninstall();
-  });
-
-  it('dispatches FETCH_ARTICLE_SUCCESS, responding with 200 and data', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: [1, 2, 3],
-      });
+    beforeEach(function () {
+        moxios.install();
     });
 
-    const expectedActions = [
-      fetchArticleRequest(),
-      fetchArticleSuccess([1, 2, 3])
-    ];
-
-    const store = mockStore()
-
-    return store.dispatch(fetchArticle()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-    });
-  });
-
-  it('dispatches FETCH_ARTICLE_FAILURE, responding with an error', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 400,
-        response: 'error'
-      });
+    afterEach(function () {
+        moxios.uninstall();
     });
 
-    const expectedActions = [
-      fetchArticleRequest(),
-      fetchArticleFailure('error')
-    ];
+    it('dispatches FETCH_ARTICLE_SUCCESS, responding with 200 and data', () => {
+        moxios.stubRequest(`${API_URL}/articles/12345`, {
+            status: 200,
+            response: [1, 2, 3],
+        });
 
-    const store = mockStore();
+        const expectedActions = [
+            fetchArticleRequest(),
+            fetchArticleSuccess([1, 2, 3])
+        ];
 
-    return store.dispatch(fetchArticle())
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedActions);
-      });
+        const store = mockStore()
 
-  });
+        return store.dispatch(fetchArticle('12345')).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    it('dispatches FETCH_ARTICLE_FAILURE, responding with an error', () => {
+        const error = new Error('Error: Request failed with status code 400');
+
+        moxios.stubRequest(`${API_URL}/articles/12345`, {
+            status: 400,
+            response: { error }
+        });
+
+        const expectedActions = [
+            fetchArticleRequest(),
+            fetchArticleFailure({ 'error': error })
+        ];
+
+        const store = mockStore();
+
+        return store.dispatch(fetchArticle('12345'))
+            .then(() => {
+                expect(store.getActions()).toEqual(expectedActions);
+            });
+
+    });
 
 });
