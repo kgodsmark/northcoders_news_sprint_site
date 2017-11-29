@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import fetchArticles from '../actions/fetchArticles';
+import ArticleListUI from '../components/ArticleListUI';
 
 class ArticleList extends Component {
+
+    componentDidMount() {
+        this.props.fetchArticles();
+    }
+
     render() {
+        const { articles, loading } = this.props;
         return (
-            <div id='ArticleList'>
-                <p>Article List Here</p>
-            </div>
+            <ArticleListUI articles={articles} loading={loading} />
         );
     }
 }
 
-export default ArticleList;
+
+const mapStateToProps = (state) => {
+    return {
+        articles: state.articlesReducer.data,
+        loading: state.articlesReducer.loading,
+        error: state.articlesReducer.error
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchArticles: () => {
+            dispatch(fetchArticles());
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

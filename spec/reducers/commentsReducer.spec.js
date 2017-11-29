@@ -20,14 +20,14 @@ describe('comments reducer', () => {
       expect(newState).to.equal(initialState);
     });
   });
-  it('handles FETCH_comments_REQUEST', () => {
+  it('handles FETCH_COMMENTS_REQUEST', () => {
     const action = fetchCommentsRequest();
     const newState = commentsReducer(undefined, action);
     expect(newState.loading).to.be.true;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql([]);
   });
-  it('handles FETCH_comments_SUCCESS', () => {
+  it('handles FETCH_COMMENTS_SUCCESS', () => {
     const prevState = commentsReducer(undefined, fetchCommentsRequest());
     const data = [1, 2, 3];
     const action = fetchCommentsSuccess(data);
@@ -36,7 +36,7 @@ describe('comments reducer', () => {
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
   });
-  it('handles FETCH_comments_FAILURE', () => {
+  it('handles FETCH_COMMENTS_FAILURE', () => {
     const prevState = commentsReducer(undefined, fetchCommentsRequest());
     const error = 'Something went wrong';
     const action = fetchCommentsFailure(error);
