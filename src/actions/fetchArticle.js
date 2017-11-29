@@ -23,7 +23,8 @@ export default (article_id) => {
     dispatch(fetchArticleRequest());
     return axios.get(`${API_URL}/articles/${article_id}`)
       .then(res => {
-        dispatch(fetchArticleSuccess(res.data));
+        console.log(res)
+        dispatch(fetchArticleSuccess(res.data.article));
       })
       .catch(err => {
         dispatch(fetchArticleFailure(err.response.data));

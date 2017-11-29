@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import '../css/App.css';
 
 import ArticleList from './ArticleList';
+import ArticleView from './ArticleView';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route exact path='/' component={ArticleList} />
+          <Route exact path='/articles/:id' component={ArticleView} />
         </Switch>
 
       </div>
