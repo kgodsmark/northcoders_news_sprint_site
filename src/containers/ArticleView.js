@@ -1,16 +1,13 @@
 import React from 'react';
-import { Link, Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import fetchArticle from '../actions/fetchArticle';
+import fetchComments from '../actions/fetchComments';
 import ArticleViewUI from '../components/ArticleViewUI';
 
 class ArticleView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.fetchArticle(this.props.match.params.id);
+        this.props.fetchComments(this.props.match.params.id);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -24,7 +21,8 @@ class ArticleView extends React.Component {
     render() {
         const { article, loading } = this.props;
         return (
-            <ArticleViewUI loading={loading} article={article}/>
+            <ArticleViewUI loading={loading} article={article} />
+
         );
     }
 };
@@ -38,6 +36,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchArticle: (article_id) => {
         dispatch(fetchArticle(article_id));
+    },
+    fetchComments: (article_id) => {
+        dispatch(fetchComments(article_id));
     }
 });
 

@@ -5,6 +5,7 @@ import '../css/App.css';
 
 import ArticleList from './ArticleList';
 import ArticleView from './ArticleView';
+import CommentsList from './CommentsList';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ArticleList} />
           <Route exact path='/articles/:id' component={ArticleView} />
+          <Route path='/articles/:id/comments' component={CommentsList} />
         </Switch>
 
       </div>
