@@ -27,7 +27,7 @@ describe('fetchArticles actions', () => {
   it('dispatches FETCH_ARTICLES_SUCCESS, responding with 200 and data', () => {
     moxios.stubRequest(`${API_URL}/articles`, {
       status: 200,
-      response: [1, 2, 3],
+      response: {articles:[1, 2, 3]},
     });
 
     const expectedActions = [

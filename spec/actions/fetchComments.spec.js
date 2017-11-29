@@ -26,7 +26,7 @@ describe('fetchComments actions', () => {
   it('dispatches FETCH_COMMENTS_SUCCESS, responding with 200 and data', () => {
     moxios.stubRequest(`${API_URL}/articles/12345/comments`, {
       status: 200,
-      response: [1, 2, 3],
+      response: {comments:[1, 2, 3]},
     });
 
     const expectedActions = [
