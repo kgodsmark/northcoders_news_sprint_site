@@ -7,9 +7,9 @@ import API_URL from '../api_url';
     type: types.POST_COMMENT_REQUEST,
   });
     
-  export const postCommentSuccess = (comment) => ({
+  export const postCommentSuccess = (comments) => ({
     type: types.POST_COMMENT_SUCCESS,
-    payload: comment
+    payload: comments
   });
     
   export const postCommentFailure = (error) => ({
@@ -20,9 +20,9 @@ import API_URL from '../api_url';
   export default (article_id, body, username) => {
     return (dispatch) => {
       dispatch(postCommentRequest());
-      return axios.post(`${API_URL}/articles/${article_id}/comments`, {body, username})
+      return axios.post(`${API_URL}/articles/${article_id}/comments`, {body: body, belongs_to: article_id, created_by: username})
         .then(res => {
-          return dispatch(postCommentSuccess(res.data.comment));
+          return dispatch(postCommentSuccess(res.data));
         })
         .catch(err => { 
           return dispatch(postCommentFailure(err.response.data));
