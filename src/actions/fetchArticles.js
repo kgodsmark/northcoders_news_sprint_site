@@ -18,10 +18,11 @@ export const fetchArticlesFailure = (error) => ({
   payload: error
 });
 
-export default () => {
+export default (topic) => {
+topic = (topic) ? 'topics/' + topic + '/' : '';
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
-    return axios.get(`${API_URL}/articles`)
+    return axios.get(`${API_URL}/${topic}articles`)
       .then(res => {
         dispatch(fetchArticlesSuccess(res.data.articles));
       })
