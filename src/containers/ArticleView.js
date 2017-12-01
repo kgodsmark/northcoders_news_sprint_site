@@ -12,7 +12,6 @@ class ArticleView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
         };
         this.handleNextPage = this.handleNextPage.bind(this);
         this.handlePrevPage = this.handlePrevPage.bind(this);
@@ -28,14 +27,15 @@ class ArticleView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         let oldId = this.props.match.params.id;
         let newId = nextProps.match.params.id;
         if (newId !== oldId) {
             this.props.fetchArticle(newId);
         }
+        if(this.props.article.votes !== nextProps.article.votes) this.setState()
     }
 
+    
 
 
     render() {
@@ -53,23 +53,25 @@ class ArticleView extends React.Component {
     }
 
     handleVoteUp() {
-        this.props.changeArticleVote('up');
+        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
+        this.props.changeArticleVote(currentArticleId, 'up');
     }
 
     handleVoteDown() {
-        this.props.changeArticleVote('down');
+        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
+        this.props.changeArticleVote(currentArticleId, 'down');
     }
 
     handleNextPage() {
-        let id = (this.props.article[0]._id)? this.props.article[0]._id : '';
-        let articlePosition = findIndex(this.props.articles, (o) => o._id === id);
+        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
+        let articlePosition = findIndex(this.props.articles, (o) => o._id === currentArticleId);
         articlePosition = (articlePosition === this.props.articles.length-1)? 0 : articlePosition;
         this.props.fetchArticle(this.props.articles[articlePosition+1]._id)
     }
 
     handlePrevPage() {
-        let id = (this.props.article[0]._id)? this.props.article[0]._id : '';
-        let articlePosition = findIndex(this.props.articles, (o) => o._id === id);
+        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
+        let articlePosition = findIndex(this.props.articles, (o) => o._id === currentArticleId);
         articlePosition = (articlePosition === 0)? this.props.articles.length-1 : articlePosition;
         this.props.fetchArticle(this.props.articles[articlePosition-1]._id)
     }
@@ -92,11 +94,10 @@ const mapDispatchToProps = dispatch => ({
         dispatch(fetchComments(article_id));
     },
     fetchArticles: (topic) => {
-        console.log(topic)
         dispatch(fetchArticles(topic));
     },
-    changeArticleVote: (voteChange) => {
-        dispatch(changeArticleVote(voteChange));
+    changeArticleVote: (article_id, voteChange) => {
+        dispatch(changeArticleVote(article_id, voteChange));
     }
 });
 
