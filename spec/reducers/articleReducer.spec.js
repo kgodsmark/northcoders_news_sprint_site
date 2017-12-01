@@ -5,6 +5,11 @@ import {
   fetchArticleSuccess,
   fetchArticleFailure
 } from '../../src/actions/fetchArticle';
+import {
+  changeArticleVoteRequest,
+  changeArticleVoteSuccess,
+  changeArticleVoteFailure
+} from '../../src/actions/changeArticleVote';
 
 
 describe('article reducer', () => {
@@ -40,6 +45,31 @@ describe('article reducer', () => {
     const prevState = articleReducer(undefined, fetchArticleRequest());
     const error = 'Something went wrong';
     const action = fetchArticleFailure(error);
+    const newState = articleReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+  it('handles PUT_ARTICLE_REQUEST', () => {
+    const action = changeArticleVoteRequest();
+    const newState = articleReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql([]);
+  });
+  it('handles PUT_ARTICLE_SUCCESS', () => {
+    const prevState = articleReducer(undefined, changeArticleVoteRequest());
+    const data = [1, 2, 3];
+    const action = changeArticleVoteSuccess(data);
+    const newState = articleReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql(data);
+  });
+  it('handles PUT_ARTICLE_FAILURE', () => {
+    const prevState = articleReducer(undefined, changeArticleVoteRequest());
+    const error = 'Something went wrong';
+    const action = changeArticleVoteFailure(error);
     const newState = articleReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
