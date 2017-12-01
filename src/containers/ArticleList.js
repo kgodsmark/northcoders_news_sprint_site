@@ -11,7 +11,6 @@ class ArticleList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         let oldTopic = this.props.match.params.topic
         let newTopic = nextProps.match.params.topic
         if(newTopic !== oldTopic) {
