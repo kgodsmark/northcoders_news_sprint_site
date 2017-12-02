@@ -22,7 +22,7 @@ import API_URL from '../api_url';
       dispatch(postCommentRequest());
       return axios.post(`${API_URL}/articles/${article_id}/comments`, {body: body, belongs_to: article_id, created_by: username})
         .then(res => {
-          return dispatch(postCommentSuccess(res.data));
+          return dispatch(postCommentSuccess(res.data.comments));
         })
         .catch(err => { 
           return dispatch(postCommentFailure(err.response.data));

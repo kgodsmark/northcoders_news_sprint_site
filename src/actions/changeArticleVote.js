@@ -4,16 +4,16 @@ import axios from 'axios';
 import API_URL from '../api_url';
 
   export const changeArticleVoteRequest = () => ({
-    type: types.PUT_ARTICLE_REQUEST,
+    type: types.PATCH_ARTICLE_REQUEST,
   });
     
   export const changeArticleVoteSuccess = (article) => ({
-    type: types.PUT_ARTICLE_SUCCESS,
+    type: types.PATCH_ARTICLE_SUCCESS,
     payload: article
   });
     
   export const changeArticleVoteFailure = (error) => ({
-    type: types.PUT_ARTICLE_FAILURE,
+    type: types.PATCH_ARTICLE_FAILURE,
     payload: error
   });
   
