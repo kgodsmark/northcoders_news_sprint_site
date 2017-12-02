@@ -23,7 +23,7 @@ describe('changeArticleVote actions', () => {
     moxios.uninstall();
   });
 
-  it('dispatches PUT_ARTICLE_SUCCESS, responding with 200 and data', () => {
+  it('dispatches PATCH_ARTICLE_SUCCESS, responding with 200 and data', () => {
     moxios.stubRequest(`${API_URL}/articles/12345?vote=up`, {
       method: 'patch',
       status: 200,
@@ -42,7 +42,7 @@ describe('changeArticleVote actions', () => {
     });
   });
   
-  it('dispatches PUT_ARTICLE_FAILURE, responding with an error', () => {
+  it('dispatches PATCH_ARTICLE_FAILURE, responding with an error', () => {
     const error = new Error('Error: Request failed with status code 400');
     
     moxios.stubRequest(`${API_URL}/articles/none?vote=up`, {

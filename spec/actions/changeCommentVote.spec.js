@@ -27,7 +27,7 @@ describe('changeCommentVote actions', () => {
     moxios.stubRequest(`${API_URL}/comments/12345?vote=up`, {
       method: 'patch',
       status: 200,
-      response: {comment:[1, 2, 3]},
+      response: {comments:[1, 2, 3]},
     });
 
     const expectedActions = [
