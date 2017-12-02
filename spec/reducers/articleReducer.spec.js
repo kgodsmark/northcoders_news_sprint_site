@@ -50,14 +50,14 @@ describe('article reducer', () => {
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
   });
-  it('handles PUT_ARTICLE_REQUEST', () => {
+  it('handles PATCH_ARTICLE_REQUEST', () => {
     const action = changeArticleVoteRequest();
     const newState = articleReducer(undefined, action);
     expect(newState.loading).to.be.true;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql([]);
   });
-  it('handles PUT_ARTICLE_SUCCESS', () => {
+  it('handles PATCH_ARTICLE_SUCCESS', () => {
     const prevState = articleReducer(undefined, changeArticleVoteRequest());
     const data = [1, 2, 3];
     const action = changeArticleVoteSuccess(data);
@@ -66,7 +66,7 @@ describe('article reducer', () => {
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
   });
-  it('handles PUT_ARTICLE_FAILURE', () => {
+  it('handles PATCH_ARTICLE_FAILURE', () => {
     const prevState = articleReducer(undefined, changeArticleVoteRequest());
     const error = 'Something went wrong';
     const action = changeArticleVoteFailure(error);

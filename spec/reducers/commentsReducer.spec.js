@@ -5,6 +5,16 @@ import {
   fetchCommentsSuccess,
   fetchCommentsFailure
 } from '../../src/actions/fetchComments';
+import {
+  postCommentRequest,
+  postCommentSuccess,
+  postCommentFailure
+} from '../../src/actions/postComment';
+import {
+  changeCommentVoteRequest,
+  changeCommentVoteSuccess,
+  changeCommentVoteFailure
+} from '../../src/actions/changeCommentVote';
 
 
 describe('comments reducer', () => {
@@ -40,6 +50,56 @@ describe('comments reducer', () => {
     const prevState = commentsReducer(undefined, fetchCommentsRequest());
     const error = 'Something went wrong';
     const action = fetchCommentsFailure(error);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+  it('handles POST_COMMENT_REQUEST', () => {
+    const action = postCommentRequest();
+    const newState = commentsReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql([]);
+  });
+  it('handles POST_COMMENT_SUCCESS', () => {
+    const prevState = commentsReducer(undefined, postCommentRequest());
+    const data = [1, 2, 3];
+    const action = postCommentSuccess(data);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql(data);
+  });
+  it('handles POST_COMMENT_FAILURE', () => {
+    const prevState = commentsReducer(undefined, postCommentRequest());
+    const error = 'Something went wrong';
+    const action = postCommentFailure(error);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+  it('handles PATCH_COMMENT_REQUEST', () => {
+    const action = changeCommentVoteRequest();
+    const newState = commentsReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql([]);
+  });
+  it('handles PATCH_COMMENT_SUCCESS', () => {
+    const prevState = commentsReducer(undefined, changeCommentVoteRequest());
+    const data = [1, 2, 3];
+    const action = changeCommentVoteSuccess(data);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql(data);
+  });
+  it('handles PATCH_COMMENT_FAILURE', () => {
+    const prevState = commentsReducer(undefined, changeCommentVoteRequest());
+    const error = 'Something went wrong';
+    const action = changeCommentVoteFailure(error);
     const newState = commentsReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
