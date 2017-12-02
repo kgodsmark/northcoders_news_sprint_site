@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CommentsList from '../containers/CommentsList';
 
-const ArticleViewUI = ({ loading, article, onNextPage, onPrevPage, nextPage, onVoteUp, onVoteDown }) => (
+const ArticleViewUI = ({ loading, article, onNextPage, onPrevPage, nextPage, onVoteUp, onVoteDown, topic, id }) => (
     <div>
-        <button onClick={onNextPage}>Next Article</button>
-        <button onClick={onPrevPage}>Previous Article</button>
+        <Link to={`/articles/${id}?topic=${topic}`}><button onClick={onNextPage}>Next Article</button></Link>
+        <Link to={`/articles/${id}?topic=${topic}`}><button onClick={onPrevPage}>Previous Article</button></Link>
         {(loading) ? <h3>Loading...</h3> : article.map((article, i) => (
             <div>
                 <h3 key={`title${i}`}>{article.title}</h3>
