@@ -22,7 +22,9 @@ class ArticleList extends Component {
         const { articles, loading } = this.props;
         return (
             <div>
-            <ArticleListUI articles={articles} loading={loading} />
+            <ArticleListUI 
+                articles={articles} 
+                loading={loading} />
             </div>
         );
     }

@@ -35,11 +35,8 @@ class ArticleView extends React.Component {
             this.props.fetchArticle(newId);
             this.props.fetchComments(newId);
         }
-        if(this.props.article.votes !== nextProps.article.votes) this.setState()
+        if(this.props.article.votes !== nextProps.article.votes) this.setState();
     }
-
-    
-
 
     render() {
         const { article, loading } = this.props;
@@ -69,34 +66,27 @@ class ArticleView extends React.Component {
     }
     
     findNextPageId() {
-        if(this.props.article[0]) {
-            let currentArticleId = this.props.article[0]._id
-            // let articlePosition = findIndex(this.props.articles, (item) => item._id === currentArticleId);
+        if(this.props.article[0] && this.props.articles.length) {
+            let currentArticleId = this.props.match.params.id
             let currentArticleIndex = findIndex(this.props.articles, (item) => item._id === currentArticleId);
             return (currentArticleIndex === this.props.articles.length-1) ? this.props.articles[0]._id : this.props.articles[currentArticleIndex+1]._id;
         } else return 'no_id';
     }
 
     findPrevPageId() {
-        if(this.props.article[0]) {
-            let currentArticleId = this.props.article[0]._id
+        if(this.props.article[0] && this.props.articles.length) {
+            let currentArticleId = this.props.match.params.id
             let currentArticleIndex = findIndex(this.props.articles, (item) => item._id === currentArticleId);
-            return (currentArticleIndex === 0 ) ? this.props.articles[this.props.articles.length-1]._id : this.props.articles[currentArticleIndex-1]._id;
+            return (currentArticleIndex === 0 ) ? this.props.articles[this.props.articles.length-1]._id : this.props.articles[currentArticleIndex-1]._id; 
         } else return 'no_id';
     }
 
     handleNextPage() {
-        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
-        let articlePosition = findIndex(this.props.articles, (o) => o._id === currentArticleId);
-        articlePosition = (articlePosition === this.props.articles.length-1)? 0 : articlePosition;
-        this.props.fetchArticle(this.props.articles[articlePosition+1]._id)
+        this.props.fetchArticle(this.props.match.params.id);
     }
 
     handlePrevPage() {
-        let currentArticleId = (this.props.article[0])? this.props.article[0]._id : '';
-        let articlePosition = findIndex(this.props.articles, (o) => o._id === currentArticleId);
-        articlePosition = (articlePosition === 0)? this.props.articles.length-1 : articlePosition;
-        this.props.fetchArticle(this.props.articles[articlePosition-1]._id)
+        this.props.fetchArticle(this.props.match.params.id);
     }
 
 };
@@ -105,8 +95,7 @@ const mapStateToProps = state => ({
     article: state.articleReducer.data,
     loading: state.articleReducer.loading,
     error: state.articleReducer.error,
-    articles: state.articlesReducer.data,
-    articlesLoading: state.articlesReducer.loading
+    articles: state.articlesReducer.data
 });
 
 const mapDispatchToProps = dispatch => ({
