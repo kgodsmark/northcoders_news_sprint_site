@@ -10,6 +10,7 @@ import {
   changeArticleVoteSuccess,
   changeArticleVoteFailure
 } from '../../src/actions/changeArticleVote';
+import clearArticle from '../../src/actions/clearArticle';
 
 
 describe('article reducer', () => {
@@ -73,6 +74,14 @@ describe('article reducer', () => {
     const newState = articleReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+  it('handles CLEAR_ARTICLE', () => {
+    const prevState = articleReducer(undefined, clearArticle());
+    const action = clearArticle();
+    const newState = articleReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
     expect(newState.data).to.eql([]);
   });
 });

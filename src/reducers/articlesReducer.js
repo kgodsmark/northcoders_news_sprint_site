@@ -12,7 +12,7 @@ export default (prevState = initialState, action) => {
       return Object.assign({}, prevState, {
         loading: !prevState.loading,
         error: null,
-        data: prevState.data
+        data: []
       });
     case types.FETCH_ARTICLES_SUCCESS:
       return Object.assign({}, prevState, {
@@ -25,6 +25,12 @@ export default (prevState = initialState, action) => {
         loading: false,
         error: action.payload,
         data: []
+      });
+      case types.CLEAR_ARTICLES:
+      return Object.assign({}, prevState, {
+          loading: false,
+          error: null,
+          data: []
       });
     default:
       return prevState;

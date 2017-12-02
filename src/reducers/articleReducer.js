@@ -12,7 +12,7 @@ export default (prevState = initialState, action) => {
             return Object.assign({}, prevState, {
                 loading: true,
                 error: null,
-                data: prevState.data
+                data: []
             });
         case types.FETCH_ARTICLE_SUCCESS:
             return Object.assign({}, prevState, {
@@ -30,7 +30,7 @@ export default (prevState = initialState, action) => {
             return Object.assign({}, prevState, {
                 loading: true,
                 error: null,
-                data: prevState.data
+                data: []
             });
         case types.PATCH_ARTICLE_SUCCESS:
             return Object.assign({}, prevState, {
@@ -42,6 +42,12 @@ export default (prevState = initialState, action) => {
             return Object.assign({}, prevState, {
                 loading: false,
                 error: action.payload,
+                data: []
+            });
+            case types.CLEAR_ARTICLE:
+            return Object.assign({}, prevState, {
+                loading: false,
+                error: null,
                 data: []
             });
         default:
