@@ -15,6 +15,11 @@ import {
   changeCommentVoteSuccess,
   changeCommentVoteFailure
 } from '../../src/actions/changeCommentVote';
+import {
+  deleteCommentRequest,
+  deleteCommentSuccess,
+  deleteCommentFailure
+} from '../../src/actions/deleteComment';
 
 
 describe('comments reducer', () => {
@@ -100,6 +105,31 @@ describe('comments reducer', () => {
     const prevState = commentsReducer(undefined, changeCommentVoteRequest());
     const error = 'Something went wrong';
     const action = changeCommentVoteFailure(error);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.data).to.eql([]);
+  });
+  it('handles DELETE_COMMENT_REQUEST', () => {
+    const action = deleteCommentRequest();
+    const newState = commentsReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql([]);
+  });
+  it('handles DELETE_COMMENT_SUCCESS', () => {
+    const prevState = commentsReducer(undefined, deleteCommentRequest());
+    const data = [1, 2, 3];
+    const action = deleteCommentSuccess(data);
+    const newState = commentsReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.data).to.eql(data);
+  });
+  it('handles DELETE_COMMENT_FAILURE', () => {
+    const prevState = commentsReducer(undefined, deleteCommentRequest());
+    const error = 'Something went wrong';
+    const action = deleteCommentFailure(error);
     const newState = commentsReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
