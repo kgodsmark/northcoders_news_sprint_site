@@ -10,7 +10,7 @@ const ArticleViewUI = ({ loading, article, onNextPage, onPrevPage, nextPage, onV
             <div>
                 <h3 key={`title${i}`}>{article.title}</h3>
             <p key={`body${i}`}>{article.body}</p>
-            <h5 key={`created${i}`}>Author: {article.created_by}</h5>
+            <Link to={`/users/${article.created_by}`}><h5 key={`created${i}`}>Author: {article.created_by}</h5></Link>
             <p key={`votes${i}`}>Votes:{article.votes}</p>
             <button onClick={onVoteUp}>Vote up</button>
             <button onClick={onVoteDown}>Vote down</button>

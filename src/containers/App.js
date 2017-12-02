@@ -7,6 +7,7 @@ import ArticleList from './ArticleList';
 import Navbar from './Navbar';
 import ArticleView from './ArticleView';
 import CommentsList from './CommentsList';
+import UserPage from './UserPage';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path='/topics/:topic/articles' component={ArticleList} />
           <Route exact path='/articles/:id' component={ArticleView} />
           <Route path='/articles/:id/comments' component={CommentsList} />
+          <Route path='/users/:username' component={UserPage} />
         </Switch>
       </div>
 
