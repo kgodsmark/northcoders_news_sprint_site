@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment, onTextChange, onVoteUp, onVoteDown }) => (
+const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment, onTextChange, onVoteUp, onVoteDown, deleteComment }) => (
     <div>
 
 <form className="commentForm" onSubmit={onSubmit}>
@@ -27,6 +27,7 @@ const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment
                     <p key={`votes${i}`}>Votes: {comment.votes}</p>
                     <button onClick={onVoteUp} value={comment._id}>Vote up</button>
                     <button onClick={onVoteDown} value={comment._id}>Vote down</button>
+                    <button onClick={deleteComment} value={comment._id}>Delete</button>
                 </div>
             );
         })}

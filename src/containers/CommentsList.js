@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CommentsListUI from '../components/CommentsListUI';
 import postComment from '../actions/postComment';
 import changeCommentVote from '../actions/changeCommentVote';
+import deleteComment from '../actions/deleteComment';
 
 class CommentsList extends React.Component {
     constructor(props){
@@ -16,6 +17,7 @@ class CommentsList extends React.Component {
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleVoteUp = this.handleVoteUp.bind(this);
         this.handleVoteDown = this.handleVoteDown.bind(this);
+        this.handleDeleteComment = this.handleDeleteComment.bind(this);
     };
 
     // componentWillReceiveProps(nextProps) {
@@ -38,6 +40,7 @@ class CommentsList extends React.Component {
             onTextChange={this.handleTextChange}
             onVoteUp={this.handleVoteUp}
             onVoteDown={this.handleVoteDown}
+            deleteComment={this.handleDeleteComment}
              />
         );
     }
@@ -75,6 +78,10 @@ class CommentsList extends React.Component {
             username: ''
         });  
     }
+
+    handleDeleteComment(event) {
+        this.props.deleteComment(event.target.value)
+    }
 };
 
 const mapStateToProps = state => ({
@@ -89,6 +96,9 @@ const mapDispatchToProps = dispatch => ({
      },
      changeCommentVote: (comment_id, voteChange) => {
          dispatch(changeCommentVote(comment_id, voteChange))
+     },
+     deleteComment: (comment_id) => {
+        dispatch(deleteComment(comment_id));
      }
 });
 
