@@ -22,6 +22,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path='/' component={ArticleList} />
+          <Route exact path='/topics/:topic/articles' component={ArticleList} />
           <Route exact path='/articles/:id' component={ArticleView} />
           <Route path='/articles/:id/comments' component={CommentsList} />
           <Route path='/users/:username' component={UserPage} />

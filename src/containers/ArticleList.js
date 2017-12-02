@@ -30,7 +30,6 @@ class ArticleList extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
     return {
         articles: state.articlesReducer.data,

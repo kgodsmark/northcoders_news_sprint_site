@@ -25,6 +25,7 @@ const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment
                     <p key={`body${i}`}>{comment.body}</p>
                     <p key={`created${i}`}>Created by: {comment.created_by}</p>
                     <p key={`votes${i}`}>Votes: {comment.votes}</p>
+                    <p>Date: {new Date(comment.created_at).toDateString()}</p>
                     <button onClick={onVoteUp} value={comment._id}>Vote up</button>
                     <button onClick={onVoteDown} value={comment._id}>Vote down</button>
                     <button onClick={deleteComment} value={comment._id}>Delete</button>
