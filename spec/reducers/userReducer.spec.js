@@ -5,6 +5,11 @@ import {
   fetchUserSuccess,
   fetchUserFailure
 } from '../../src/actions/fetchUser';
+import {
+  fetchUserReposRequest,
+  fetchUserReposSuccess,
+  fetchUserReposFailure
+} from '../../src/actions/fetchUserRepos';
 
 
 describe('user reducer', () => {
@@ -20,14 +25,14 @@ describe('user reducer', () => {
       expect(newState).to.equal(initialState);
     });
   });
-  it('handles FETCH_ARTICLE_REQUEST', () => {
+  it('handles FETCH_USER_REQUEST', () => {
     const action = fetchUserRequest();
     const newState = userReducer(undefined, action);
     expect(newState.loading).to.be.true;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql([]);
   });
-  it('handles FETCH_ARTICLE_SUCCESS', () => {
+  it('handles FETCH_USER_SUCCESS', () => {
     const prevState = userReducer(undefined, fetchUserRequest());
     const data = [1, 2, 3];
     const action = fetchUserSuccess(data);
@@ -36,7 +41,7 @@ describe('user reducer', () => {
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
   });
-  it('handles FETCH_ARTICLE_FAILURE', () => {
+  it('handles FETCH_USER_FAILURE', () => {
     const prevState = userReducer(undefined, fetchUserRequest());
     const error = 'Something went wrong';
     const action = fetchUserFailure(error);
@@ -44,5 +49,30 @@ describe('user reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+  });
+  it('handles FETCH_USERREPOS_REQUEST', () => {
+    const action = fetchUserReposRequest();
+    const newState = userReducer(undefined, action);
+    expect(newState.loading).to.be.true;
+    expect(newState.error).to.be.null;
+    expect(newState.repos).to.eql([]);
+  });
+  it('handles FETCH_USERREPOS_SUCCESS', () => {
+    const prevState = userReducer(undefined, fetchUserReposRequest());
+    const data = [1, 2, 3];
+    const action = fetchUserReposSuccess(data);
+    const newState = userReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.be.null;
+    expect(newState.repos).to.eql(data);
+  });
+  it('handles FETCH_USERREPOS_FAILURE', () => {
+    const prevState = userReducer(undefined, fetchUserReposRequest());
+    const error = 'Something went wrong';
+    const action = fetchUserReposFailure(error);
+    const newState = userReducer(prevState, action);
+    expect(newState.loading).to.be.false;
+    expect(newState.error).to.eql(error);
+    expect(newState.repos).to.eql([]);
   });
 });
