@@ -15,15 +15,6 @@ class CommentsList extends React.Component {
         this.handleTextChange = this.handleTextChange.bind(this);
     };
 
-    componentWillReceiveProps(nextProps) {
-        console.log('nextprops:', nextProps)
-        let oldComments = this.props.comments
-        let newComments = nextProps.comments
-        if(newComments !== oldComments) {
-            // this.props.fetchArticles(newComments); 
-        }
-    }
-
     render() {
         const { comments } = this.props;
         return (

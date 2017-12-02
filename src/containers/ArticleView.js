@@ -18,6 +18,7 @@ class ArticleView extends React.Component {
         this.handleVoteUp = this.handleVoteUp.bind(this);
         this.handleVoteDown = this.handleVoteDown.bind(this);
         this.findNextPageId = this.findNextPageId.bind(this);
+        this.findPrevPageId = this.findPrevPageId.bind(this);
     };
 
     componentDidMount() {
@@ -32,6 +33,7 @@ class ArticleView extends React.Component {
         let newId = nextProps.match.params.id;
         if (newId !== oldId) {
             this.props.fetchArticle(newId);
+            this.props.fetchComments(newId);
         }
         if(this.props.article.votes !== nextProps.article.votes) this.setState()
     }
@@ -49,7 +51,8 @@ class ArticleView extends React.Component {
                 onNextPage={this.handleNextPage}
                 onVoteUp={this.handleVoteUp}
                 onVoteDown={this.handleVoteDown}
-                id={this.findNextPageId()}
+                nextId={this.findNextPageId()}
+                prevId={this.findPrevPageId()}
                 topic={(this.props.article[0])? this.props.article[0].belongs_to : ''} />
 
         );
@@ -69,8 +72,16 @@ class ArticleView extends React.Component {
         if(this.props.article[0]) {
             let currentArticleId = this.props.article[0]._id
             // let articlePosition = findIndex(this.props.articles, (item) => item._id === currentArticleId);
-            let nextArticleIndex = findIndex(this.props.articles, (item) => item._id === currentArticleId)+1;
-            return (nextArticleIndex === this.props.articles.length-1) ? this.props.articles[0]._id : this.props.articles[nextArticleIndex]._id;
+            let currentArticleIndex = findIndex(this.props.articles, (item) => item._id === currentArticleId);
+            return (currentArticleIndex === this.props.articles.length-1) ? this.props.articles[0]._id : this.props.articles[currentArticleIndex+1]._id;
+        } else return 'no_id';
+    }
+
+    findPrevPageId() {
+        if(this.props.article[0]) {
+            let currentArticleId = this.props.article[0]._id
+            let currentArticleIndex = findIndex(this.props.articles, (item) => item._id === currentArticleId);
+            return (currentArticleIndex === 0 ) ? this.props.articles[this.props.articles.length-1]._id : this.props.articles[currentArticleIndex-1]._id;
         } else return 'no_id';
     }
 
