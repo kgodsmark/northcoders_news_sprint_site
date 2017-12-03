@@ -8,17 +8,14 @@ import Navbar from './Navbar';
 import ArticleView from './ArticleView';
 import CommentsList from './CommentsList';
 import UserPage from './UserPage';
-
+import HeaderUI from '../components/HeaderUI';
 
 class App extends Component {
 
   render() {
     return (
       <div id='App'>
-        <header className="App-header">
-          <img src="/logo_white.png" className="App-logo" alt="logo" />
-          <h1 className="App-title">News</h1>
-        </header>
+      <HeaderUI />
         <Navbar />
         <Switch>
           <Route exact path='/' component={ArticleList} />

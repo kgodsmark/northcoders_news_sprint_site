@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import fetchTopics from '../actions/fetchTopics';
+import NavbarUI from '../components/NavbarUI';
 
 class Navbar extends Component {
 
@@ -13,14 +13,10 @@ class Navbar extends Component {
     render() {
         const { topics, loading } = this.props;
         return (
-            <div>
-                <nav>
-                    <NavLink to='/'>All Articles  |  </NavLink>
-                    {(loading) ? <h3>Loading...</h3> : topics.map((topics, i) => (
-                        <NavLink to={`/topics/${topics.slug}/articles`}>{topics.title}  |  </NavLink>
-                    ))}
-                </nav>
-            </div>
+            <NavbarUI
+                loading={loading}
+                topics={topics}
+            />
 
         );
     }
