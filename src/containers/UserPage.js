@@ -8,6 +8,12 @@ import clearArticle from '../actions/clearArticle';
 import clearArticles from '../actions/clearArticles';
 
 class UserPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
+        // this.handleChangeUrl = this.handleChangeUrl.bind(this);
+    };
 
     componentDidMount() {
         this.props.fetchUser(this.props.match.params.username);
@@ -23,6 +29,7 @@ class UserPage extends Component {
                 <UserPageUI
                     user={user}
                     loading={loading}
+                    onChangeUrl={this.handleChangeUrl}
                 />
                 <ArticleListUI  
                     loading={loading} 
@@ -30,7 +37,12 @@ class UserPage extends Component {
             </div>
         );
     }
+    // handleChangeUrl(event) {
+    //     console.log(event.target.value)
+    //     // this.props.changeCommentVote(event.target.value);
+    // }
 }
+
 
 const mapStateToProps = (state) => {
     return {

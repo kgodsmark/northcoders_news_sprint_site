@@ -72,3 +72,61 @@ position: relative;
   position: absolute;
   left: 80%;
 }
+
+
+.detailBox {
+  width:80%;
+  border:1px solid #bbb;
+  margin:50px;
+  margin-top: 10px;
+}
+.titleBox {
+  background-color:#fdfdfd;
+  padding:10px;
+}
+.titleBox label{
+color:#444;
+margin:0;
+display:inline-block;
+}
+
+
+/*********CommentListUI *********/
+.commentBox {
+  height: 100px;
+}
+
+.taskDescription {
+  margin-top:10px 0;
+}
+.commentList {
+  padding:0;
+  list-style:none;
+  max-height:200px;
+  overflow:auto;
+}
+.commentList li {
+  margin:0;
+  margin-top:10px;
+  border: black;
+}
+.commentList li > div {
+  display:table-cell;
+}
+
+.commentText p {
+  margin:0;
+}
+.sub-text {
+  color:#aaa;
+  font-family:verdana;
+  font-size:100%;
+}
+.actionBox {
+  border-top:1px dotted #bbb;
+  padding:10px;
+}
+
+.commentForm {
+  padding: 10px;
+}

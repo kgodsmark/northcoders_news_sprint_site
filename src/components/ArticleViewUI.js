@@ -21,14 +21,14 @@ const ArticleViewUI = ({ loading, article, onNextPage, onPrevPage, nextPage, onV
                         <p className="card-text" key={`body${i}`}>{article.body}</p>
                         <h5 key={`created${i}`}>By: <Link to={`/users/${article.created_by}`}>{article.created_by}</Link></h5>
                         <div>
-                        <span key={`votes${i}`}>Vote <button className="actionButton" onClick={onVoteUp}><img src="/arrow-thick-top.svg" height="20px" alt="arrow-thick-top" /> </button>{article.votes}</span>
-                        <button  className="actionButton" onClick={onVoteDown}><img src="/arrow-thick-bottom.svg" height="20px" alt="arrow-thick-bottom" /> </button>
-                    </div>
+                            <span key={`votes${i}`}>Vote <button className="actionButton" onClick={onVoteUp}><img src="/arrow-thick-top.svg" height="20px" alt="arrow-thick-top" /> </button>{article.votes}</span>
+                            <button className="actionButton" onClick={onVoteDown}><img src="/arrow-thick-bottom.svg" height="20px" alt="arrow-thick-bottom" /> </button>
+                        </div>
                     </div>
 
 
                     <div>
-                    <CommentsList />
+                        <CommentsList />
                     </div>
                 </div>
             ))}
