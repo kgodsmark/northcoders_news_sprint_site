@@ -4,6 +4,7 @@ import CommentsListUI from '../components/CommentsListUI';
 import postComment from '../actions/postComment';
 import changeCommentVote from '../actions/changeCommentVote';
 import deleteComment from '../actions/deleteComment';
+import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 class CommentsList extends React.Component {
     constructor(props){
@@ -19,14 +20,6 @@ class CommentsList extends React.Component {
         this.handleVoteDown = this.handleVoteDown.bind(this);
         this.handleDeleteComment = this.handleDeleteComment.bind(this);
     };
-
-    // componentWillReceiveProps(nextProps) {
-    //     let oldComments = this.props.comments
-    //     let newComments = nextProps.comments
-    //     if(newComments !== oldComments) {
-    //         // this.props.fetchArticles(newComments); 
-    //     }
-    // }
 
     render() {
         const { comments } = this.props;
