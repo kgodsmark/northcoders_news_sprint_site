@@ -39,15 +39,13 @@ class CommentsList extends React.Component {
     }
 
     handleVoteUp(event) {
-        event.preventDefault();
-        let commentID = event.target.value;
-        this.props.changeCommentVote(commentID, 'up');
+        let comment_id = (!event.target.id) ? event.target.value : event.target.id;;
+        this.props.changeCommentVote(comment_id, 'up');
     }
 
     handleVoteDown(event) {
-        event.preventDefault();
-        let commentID = event.target.value;
-        this.props.changeCommentVote(commentID, 'down');
+        let comment_id = (!event.target.id) ? event.target.value : event.target.id;
+        this.props.changeCommentVote(comment_id, 'down');
     }
 
     handleNameChange(event) {
@@ -73,7 +71,8 @@ class CommentsList extends React.Component {
     }
 
     handleDeleteComment(event) {
-        this.props.deleteComment(event.target.value)
+        let comment_id = (!event.target.id) ? event.target.value : event.target.id;
+        this.props.deleteComment(comment_id)
     }
 };
 
