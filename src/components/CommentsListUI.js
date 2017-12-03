@@ -44,7 +44,7 @@ const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment
                                 value={newComment}
                                 onChange={onTextChange}
                             />
-                            <input type="submit" value="Post Comment" />
+                            <input type="submit" value="Post Comment" disabled={!newComment} />
                         </div>
                     </form>
                 </div>

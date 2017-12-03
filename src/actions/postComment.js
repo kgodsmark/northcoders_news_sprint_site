@@ -2,6 +2,7 @@ import * as types from './types';
 import axios from 'axios';
 
 import API_URL from '../api_url';
+import { userInfo } from 'os';
 
   export const postCommentRequest = () => ({
     type: types.POST_COMMENT_REQUEST,
@@ -18,6 +19,7 @@ import API_URL from '../api_url';
   });
   
   export default (article_id, body, username) => {
+    username = (!username)? 'anon' : username;
     return (dispatch) => {
       dispatch(postCommentRequest());
       return axios.post(`${API_URL}/articles/${article_id}/comments`, {body: body, belongs_to: article_id, created_by: username})
