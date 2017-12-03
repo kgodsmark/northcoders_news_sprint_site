@@ -7,6 +7,15 @@
   height: 80px;
 }
 
+.App-top-logo {
+position: relative;
+}
+
+.App-top-news-logo {
+  position: absolute;
+  height: 80px;
+  }
+
 .App-header {
   background-color: #222;
   height: 150px;
@@ -39,9 +48,27 @@
 }
 
 
-.nav-link:hover 
-{
+.nav-link:hover {
    color:red; 
    text-decoration:none; 
    cursor:pointer;  
+   background-color: lightgrey;
+}
+
+.actionButton {
+  background: transparent;
+  border: none;
+  opacity: 0.75;
+}
+
+.actionButton:hover {
+  text-decoration:none; 
+  cursor:pointer;  
+  border: lightgrey;
+  opacity: 1;
+}
+
+.nextArrow {
+  position: absolute;
+  left: 80%;
 }
