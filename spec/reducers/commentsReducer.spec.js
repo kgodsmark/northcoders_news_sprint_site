@@ -49,6 +49,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles FETCH_COMMENTS_FAILURE', () => {
     const prevState = commentsReducer(undefined, fetchCommentsRequest());
@@ -58,6 +59,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles POST_COMMENT_REQUEST', () => {
     const action = postCommentRequest();
@@ -74,6 +76,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles POST_COMMENT_FAILURE', () => {
     const prevState = commentsReducer(undefined, postCommentRequest());
@@ -83,6 +86,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles PATCH_COMMENT_REQUEST', () => {
     const action = changeCommentVoteRequest();
@@ -99,6 +103,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles PATCH_COMMENT_FAILURE', () => {
     const prevState = commentsReducer(undefined, changeCommentVoteRequest());
@@ -108,6 +113,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles DELETE_COMMENT_REQUEST', () => {
     const action = deleteCommentRequest();
@@ -124,6 +130,7 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles DELETE_COMMENT_FAILURE', () => {
     const prevState = commentsReducer(undefined, deleteCommentRequest());
@@ -133,5 +140,6 @@ describe('comments reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
 });

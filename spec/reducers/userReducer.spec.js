@@ -39,6 +39,7 @@ describe('user reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles FETCH_USER_FAILURE', () => {
     const prevState = userReducer(undefined, fetchUserRequest());
@@ -47,7 +48,8 @@ describe('user reducer', () => {
     const newState = userReducer(prevState, action);
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
-    expect(newState.data).to.eql([]);
+    expect(newState.data).to.eql([]);    
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles FETCH_USERREPOS_REQUEST', () => {
     const action = fetchUserReposRequest();
@@ -64,6 +66,7 @@ describe('user reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.repos).to.eql(data);
+    expect(newState.repos).to.not.equal(prevState.repos);
   });
   it('handles FETCH_USERREPOS_FAILURE', () => {
     const prevState = userReducer(undefined, fetchUserReposRequest());
@@ -73,5 +76,6 @@ describe('user reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.repos).to.eql([]);
+    expect(newState.repos).to.not.equal(prevState.repos);
   });
 });

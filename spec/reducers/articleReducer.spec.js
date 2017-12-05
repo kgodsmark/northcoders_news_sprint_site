@@ -40,6 +40,7 @@ describe('article reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles FETCH_ARTICLE_FAILURE', () => {
     const prevState = articleReducer(undefined, fetchArticleRequest());
@@ -49,6 +50,7 @@ describe('article reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles PATCH_ARTICLE_REQUEST', () => {
     const action = changeArticleVoteRequest();
@@ -65,6 +67,7 @@ describe('article reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql(data);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles PATCH_ARTICLE_FAILURE', () => {
     const prevState = articleReducer(undefined, changeArticleVoteRequest());
@@ -74,6 +77,7 @@ describe('article reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.eql(error);
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
   it('handles CLEAR_ARTICLE', () => {
     const prevState = articleReducer(undefined, clearArticle());
@@ -82,5 +86,6 @@ describe('article reducer', () => {
     expect(newState.loading).to.be.false;
     expect(newState.error).to.be.null;
     expect(newState.data).to.eql([]);
+    expect(newState.data).to.not.equal(prevState.data);
   });
 });
