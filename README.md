@@ -25,7 +25,7 @@ And when finished
 $ npm start
 ```
 
-It should be available in your [localhost:3000](http://localhost:3000)
+It should open automatically at [localhost:3000](http://localhost:3000)
 
 
 ## Running the tests
