@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import API_URL from '../api_url';
 
-
 export const fetchUserRequest = () => ({
   type: types.FETCH_USER_REQUEST
 });
@@ -28,5 +27,5 @@ export default (username) => {
       .catch(err => {
         dispatch(fetchUserFailure(err.response.data));
       });
-  }
+  };
 };

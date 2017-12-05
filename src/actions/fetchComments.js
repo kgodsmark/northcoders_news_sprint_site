@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import API_URL from '../api_url';
 
-
 export const fetchCommentsRequest = () => ({
   type: types.FETCH_COMMENTS_REQUEST
 });
@@ -28,5 +27,5 @@ export default (article_id) => {
       .catch(err => {
         dispatch(fetchCommentsFailure(err.response.data));
       });
-  }
+  };
 };

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import API_URL from '../api_url';
 
-
 export const fetchArticlesRequest = () => ({
   type: types.FETCH_ARTICLES_REQUEST
 });
@@ -19,7 +18,7 @@ export const fetchArticlesFailure = (error) => ({
 });
 
 export default (topic) => {
-topic = (topic) ? 'topics/' + topic + '/' : '';
+  topic = (topic) ? 'topics/' + topic + '/' : '';
   return (dispatch) => {
     dispatch(fetchArticlesRequest());
     return axios.get(`${API_URL}/${topic}articles`)
@@ -29,5 +28,5 @@ topic = (topic) ? 'topics/' + topic + '/' : '';
       .catch(err => {
         dispatch(fetchArticlesFailure(err.response.data));
       });
-  }
+  };
 };

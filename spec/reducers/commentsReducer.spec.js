@@ -21,7 +21,6 @@ import {
   deleteCommentFailure
 } from '../../src/actions/deleteComment';
 
-
 describe('comments reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {

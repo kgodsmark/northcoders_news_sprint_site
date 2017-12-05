@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import API_URL from '../api_url';
 
-
 export const fetchArticleRequest = () => ({
   type: types.FETCH_ARTICLE_REQUEST
 });
@@ -28,5 +27,5 @@ export default (article_id) => {
       .catch(err => {
         dispatch(fetchArticleFailure(err.response.data));
       });
-  }
+  };
 };

@@ -12,7 +12,6 @@ import {
 } from '../../src/actions/changeArticleVote';
 import clearArticle from '../../src/actions/clearArticle';
 
-
 describe('article reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {

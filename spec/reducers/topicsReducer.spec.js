@@ -6,7 +6,6 @@ import {
   fetchTopicsFailure
 } from '../../src/actions/fetchTopics';
 
-
 describe('topics reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {

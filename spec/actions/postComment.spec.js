@@ -34,7 +34,7 @@ describe('postComment actions', () => {
       postCommentSuccess([1, 2, 3])
     ];
 
-    const store = mockStore()
+    const store = mockStore();
 
     return store.dispatch(postComment('12345', 'this is a comment', 'test username')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -45,8 +45,8 @@ describe('postComment actions', () => {
     const error = new Error('Error: Request failed with status code 400');
     
     moxios.stubRequest(`${API_URL}/articles/none/comments`, {
-       status: 400,
-       response: { error }
+      status: 400,
+      response: { error }
     });
 
     const expectedActions = [

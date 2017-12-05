@@ -35,7 +35,7 @@ describe('deleteComment actions', () => {
       deleteCommentSuccess([1, 2, 3])
     ];
 
-    const store = mockStore()
+    const store = mockStore();
 
     return store.dispatch(deleteComment('12345')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
@@ -46,8 +46,8 @@ describe('deleteComment actions', () => {
     const error = new Error('Error: Request failed with status code 400');
     
     moxios.stubRequest(`${API_URL}/comments/none`, {
-       status: 400,
-       response: { error }
+      status: 400,
+      response: { error }
     });
 
     const expectedActions = [

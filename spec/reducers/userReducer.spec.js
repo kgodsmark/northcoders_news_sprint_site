@@ -11,7 +11,6 @@ import {
   fetchUserReposFailure
 } from '../../src/actions/fetchUserRepos';
 
-
 describe('user reducer', () => {
   describe('default behaviour', () => {
     it('returns the passed previous state if an unrecognised action is passed', () => {

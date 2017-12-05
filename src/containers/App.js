@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div id='App'>
-      <HeaderUI />
+        <HeaderUI />
         <Navbar />
         <Switch>
           <Route exact path='/' component={ArticleList} />
@@ -29,7 +29,6 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
 

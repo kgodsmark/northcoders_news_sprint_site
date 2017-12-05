@@ -35,9 +35,9 @@ describe('changeArticleVote actions', () => {
       changeArticleVoteSuccess([1, 2, 3])
     ];
 
-    const store = mockStore()
+    const store = mockStore();
 
-    return store.dispatch(changeArticleVote('12345','up')).then(() => {
+    return store.dispatch(changeArticleVote('12345', 'up')).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -46,8 +46,8 @@ describe('changeArticleVote actions', () => {
     const error = new Error('Error: Request failed with status code 400');
     
     moxios.stubRequest(`${API_URL}/articles/none?vote=up`, {
-       status: 400,
-       response: { error }
+      status: 400,
+      response: { error }
     });
 
     const expectedActions = [

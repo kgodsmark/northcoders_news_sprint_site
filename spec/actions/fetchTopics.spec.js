@@ -9,7 +9,6 @@ import fetchTopics, {
 } from '../../src/actions/fetchTopics';
 
 import API_URL from '../../src/api_url';
-import { request } from 'https';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);

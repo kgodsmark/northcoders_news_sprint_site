@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import API_URL from '../api_url';
 
-
 export const fetchTopicsRequest = () => ({
   type: types.FETCH_TOPICS_REQUEST
 });
@@ -28,5 +27,5 @@ export default () => {
       .catch(err => {
         dispatch(fetchTopicsFailure(err.response.data));
       });
-  }
+  };
 };
