@@ -9,7 +9,6 @@ const ArticleListUI = ({ articles, loading }) => (
         <div key={`div${i}`}>
           <ListGroupItem key={`list${i}`} className="justify-content-between"><Link to={`/articles/${article._id}?topic=${article.belongs_to}`}>{article.title}</Link>
             <div key={`listdiv${i}`}><span key={`created${i}`}>By {article.created_by}  </span><Badge pill>{article.votes} votes</Badge></div></ListGroupItem>
-          <h3 key={article._id}></h3>          <h3 key={article._id}></h3>
         </div>
       ))}
     </ListGroup>

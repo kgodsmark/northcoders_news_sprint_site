@@ -30,7 +30,7 @@ const CommentsListUI = ({ comments, onSubmit, onNameChange, username, newComment
         </ul>
 
         <div className="commentForm">
-          <form role="form" onSubmit={onSubmit}>
+          <form onSubmit={onSubmit}>
             <div className="form-group">
               <input className="form-control" type="text"
                 placeholder="Your name"

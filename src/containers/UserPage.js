@@ -12,7 +12,6 @@ class UserPage extends Component {
     super(props);
     this.state = {
     };
-    // this.handleChangeUrl = this.handleChangeUrl.bind(this);
   }
 
   componentDidMount() {
@@ -37,10 +36,6 @@ class UserPage extends Component {
       </div>
     );
   }
-  // handleChangeUrl(event) {
-  //     console.log(event.target.value)
-  //     // this.props.changeCommentVote(event.target.value);
-  // }
 }
 
 const mapStateToProps = (state) => {
