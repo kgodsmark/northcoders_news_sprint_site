@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
+import { ListGroupItem, Badge } from 'reactstrap';
 
 const ArticleListItemUI = ({ article, i }) => (
     <div key={`div${i}`}>

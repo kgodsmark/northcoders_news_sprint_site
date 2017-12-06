@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CommentsList from '../containers/CommentsList';
 import ArticleUI from './ArticleUI';
 import ArticleNavUI from './ArticleNavUI';
